@@ -1,0 +1,10 @@
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\bin\Debug\VBMaze.exe.config
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\bin\Debug\VBMaze.exe
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\bin\Debug\VBMaze.pdb
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\bin\Debug\VBMaze.xml
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.Resources.resources
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.vbproj.GenerateResource.Cache
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.exe
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.xml
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.pdb
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Debug\VBMaze.FormOptions.resources
