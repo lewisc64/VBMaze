@@ -19,7 +19,7 @@
     End Sub
 
     Public Sub Update(display As VBGame.Display)
-        If value Mod interval = 0 Then
+        If interval <> 0 AndAlso value Mod interval = 0 Then
             Draw(display)
             display.update()
         End If

@@ -3,7 +3,7 @@
     Private grid As Grid
     Private random As New Random
 
-    Public running As Boolean = False
+    Public running As Boolean = True
 
     Public start As Integer
     Public finish As Integer
@@ -27,11 +27,11 @@
     End Sub
 
     Public Sub Draw(display As VBGame.DrawBase)
-        display.drawCircle(New VBGame.Circle(grid.nodes(start).x, grid.nodes(start).y, grid.thickness / 2), VBGame.Colors.green)
-        display.drawCircle(New VBGame.Circle(grid.nodes(finish).x, grid.nodes(finish).y, grid.thickness / 2), VBGame.Colors.red)
         For Each i As Integer In backtracks
             display.drawCircle(New VBGame.Circle(grid.nodes(i).x, grid.nodes(i).y, grid.thickness / 2), VBGame.Colors.blue)
         Next
+        display.drawCircle(New VBGame.Circle(grid.nodes(start).x, grid.nodes(start).y, grid.thickness / 2), VBGame.Colors.green)
+        display.drawCircle(New VBGame.Circle(grid.nodes(finish).x, grid.nodes(finish).y, grid.thickness / 2), VBGame.Colors.red)
     End Sub
 
     Public Function Backtrack() As Boolean

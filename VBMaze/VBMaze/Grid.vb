@@ -32,6 +32,16 @@
         Next
     End Sub
 
+    Public Sub Draw(surface As VBGame.DrawBase)
+        surface.fill(wallColor)
+        For Each Node As Node In nodes
+            surface.drawCircle(New VBGame.Circle(Node.x, Node.y, thickness / 2), pathColor)
+        Next
+        For Each connection As Array In connections
+            surface.drawLine(nodes(connection(0)).GetXY(), nodes(connection(1)).GetXY(), pathColor, thickness)
+        Next
+    End Sub
+
     Public Sub DrawDirty()
         For Each node As Integer In dirtyNodes
             display.drawCircle(New VBGame.Circle(nodes(node).GetXY(), thickness / 2), pathColor)
@@ -103,7 +113,7 @@
         dirtyNodes.Clear()
         dirtyConnections.Clear()
         connected.Clear()
-        neighbouring = spacing + 3
+        neighbouring = spacing + spacing / 7
         Dim ymod As Integer = spacing / 4
         For tx As Integer = spacing To display.width - spacing Step spacing
             ymod = -ymod
@@ -116,16 +126,61 @@
         PrecomputeNeighbours()
     End Sub
 
+    Public Sub GenerateCircular()
+        display.fill(VBGame.Colors.black)
+        Dim bar As New ProgressBar("Generating circular grid...", (display.width * display.height) / spacing ^ 2, 100)
+        nodes.Clear()
+        connections.Clear()
+        dirtyNodes.Clear()
+        dirtyConnections.Clear()
+        connected.Clear()
+        neighbouring = spacing + 2
+        Dim angleStep As Integer
+        For radius As Integer = Math.Min(display.width, display.height) / 2 - spacing To spacing / 2 Step -spacing
+            angleStep = CInt(360 * (spacing / (Math.PI * radius * 2)))
+            For angle As Integer = 0 To 360 - angleStep / 2 Step angleStep
+                nodes.Add(New Node((display.width / 2) + Math.Cos(angle * (Math.PI / 180)) * radius, (display.height / 2) + Math.Sin(angle * (Math.PI / 180)) * radius))
+                bar.Update(display)
+            Next
+        Next
+        nodes.Add(New Node(display.width / 2, display.height / 2))
+        PrecomputeNeighbours()
+    End Sub
+
     Public Sub GenerateRandom()
+        display.fill(VBGame.Colors.black)
+        Dim bar As New ProgressBar("Generating random grid...", (display.width * display.height) / spacing ^ 2, 100)
         nodes.Clear()
         connections.Clear()
         dirtyNodes.Clear()
         dirtyConnections.Clear()
         connected.Clear()
         neighbouring = spacing * 2
-        For x As Integer = 1 To (display.width * display.height) / spacing ^ 2
-            nodes.Add(New Node(random.Next(spacing, display.width - spacing), random.Next(spacing, display.height - spacing)))
+        nodes.Add(New Node(spacing, spacing))
+        Dim x, y, attempts As Integer
+        For n As Integer = 1 To (display.width * display.height) / spacing ^ 2
+            attempts = 0
+            While True
+                If attempts > 100 Then
+                    Exit For
+                End If
+                x = random.Next(spacing, display.width - spacing)
+                y = random.Next(spacing, display.height - spacing)
+                If nodes.Count = 0 Then
+                    Exit While
+                End If
+                For Each Node As Node In nodes
+                    If GetDistance(Node, New Node(x, y)) < spacing Then
+                        attempts += 1
+                        Continue While
+                    End If
+                Next
+                Exit While
+            End While
+            nodes.Add(New Node(x, y))
+            bar.Update(display)
         Next
+        nodes.Add(New Node(display.width - spacing, display.height - spacing))
         PrecomputeNeighbours()
     End Sub
 
