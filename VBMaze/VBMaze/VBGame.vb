@@ -790,7 +790,7 @@ Namespace VBGame
             height = size.Height
 
             bitmap = New Bitmap(width, height, format)
-            bitmap.MakeTransparent()
+            'bitmap.MakeTransparent()
 
             parentgraphics = Graphics.FromImage(bitmap)
 

@@ -30,7 +30,8 @@ Partial Class FormOptions
         Me.button_apply = New System.Windows.Forms.Button()
         Me.button_export_png = New System.Windows.Forms.Button()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
-        Me.button_regenerate = New System.Windows.Forms.Button()
+        Me.check_solution = New System.Windows.Forms.CheckBox()
+        Me.check_debug = New System.Windows.Forms.CheckBox()
         Me.GroupBox3 = New System.Windows.Forms.GroupBox()
         Me.button_speed_5 = New System.Windows.Forms.Button()
         Me.button_speed_4 = New System.Windows.Forms.Button()
@@ -38,15 +39,23 @@ Partial Class FormOptions
         Me.button_speed_2 = New System.Windows.Forms.Button()
         Me.button_speed_1 = New System.Windows.Forms.Button()
         Me.button_speed_0 = New System.Windows.Forms.Button()
-        Me.check_debug = New System.Windows.Forms.CheckBox()
+        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.button_set_path_color = New System.Windows.Forms.Button()
+        Me.button_set_wall_color = New System.Windows.Forms.Button()
+        Me.button_redraw = New System.Windows.Forms.Button()
+        Me.ColorDialog_wall = New System.Windows.Forms.ColorDialog()
+        Me.ColorDialog_path = New System.Windows.Forms.ColorDialog()
+        Me.button_apply_instantly = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         CType(Me.numeric_spacing, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        Me.GroupBox4.SuspendLayout()
         Me.SuspendLayout()
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.button_apply_instantly)
         Me.GroupBox1.Controls.Add(Me.Label2)
         Me.GroupBox1.Controls.Add(Me.combo_type)
         Me.GroupBox1.Controls.Add(Me.Label1)
@@ -98,16 +107,16 @@ Partial Class FormOptions
         '
         'button_apply
         '
-        Me.button_apply.Location = New System.Drawing.Point(94, 114)
+        Me.button_apply.Location = New System.Drawing.Point(6, 114)
         Me.button_apply.Name = "button_apply"
         Me.button_apply.Size = New System.Drawing.Size(75, 23)
         Me.button_apply.TabIndex = 2
-        Me.button_apply.Text = "Apply"
+        Me.button_apply.Text = "Generate"
         Me.button_apply.UseVisualStyleBackColor = True
         '
         'button_export_png
         '
-        Me.button_export_png.Location = New System.Drawing.Point(6, 42)
+        Me.button_export_png.Location = New System.Drawing.Point(6, 19)
         Me.button_export_png.Name = "button_export_png"
         Me.button_export_png.Size = New System.Drawing.Size(75, 23)
         Me.button_export_png.TabIndex = 2
@@ -116,8 +125,6 @@ Partial Class FormOptions
         '
         'GroupBox2
         '
-        Me.GroupBox2.Controls.Add(Me.check_debug)
-        Me.GroupBox2.Controls.Add(Me.button_regenerate)
         Me.GroupBox2.Controls.Add(Me.button_export_png)
         Me.GroupBox2.Location = New System.Drawing.Point(12, 12)
         Me.GroupBox2.Name = "GroupBox2"
@@ -126,14 +133,25 @@ Partial Class FormOptions
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Actions"
         '
-        'button_regenerate
+        'check_solution
         '
-        Me.button_regenerate.Location = New System.Drawing.Point(6, 71)
-        Me.button_regenerate.Name = "button_regenerate"
-        Me.button_regenerate.Size = New System.Drawing.Size(75, 23)
-        Me.button_regenerate.TabIndex = 3
-        Me.button_regenerate.Text = "Regenerate"
-        Me.button_regenerate.UseVisualStyleBackColor = True
+        Me.check_solution.AutoSize = True
+        Me.check_solution.Location = New System.Drawing.Point(6, 42)
+        Me.check_solution.Name = "check_solution"
+        Me.check_solution.Size = New System.Drawing.Size(64, 17)
+        Me.check_solution.TabIndex = 5
+        Me.check_solution.Text = "Solution"
+        Me.check_solution.UseVisualStyleBackColor = True
+        '
+        'check_debug
+        '
+        Me.check_debug.AutoSize = True
+        Me.check_debug.Location = New System.Drawing.Point(6, 19)
+        Me.check_debug.Name = "check_debug"
+        Me.check_debug.Size = New System.Drawing.Size(58, 17)
+        Me.check_debug.TabIndex = 4
+        Me.check_debug.Text = "Debug"
+        Me.check_debug.UseVisualStyleBackColor = True
         '
         'GroupBox3
         '
@@ -204,21 +222,62 @@ Partial Class FormOptions
         Me.button_speed_0.Text = "| |"
         Me.button_speed_0.UseVisualStyleBackColor = True
         '
-        'check_debug
+        'GroupBox4
         '
-        Me.check_debug.AutoSize = True
-        Me.check_debug.Location = New System.Drawing.Point(6, 19)
-        Me.check_debug.Name = "check_debug"
-        Me.check_debug.Size = New System.Drawing.Size(58, 17)
-        Me.check_debug.TabIndex = 4
-        Me.check_debug.Text = "Debug"
-        Me.check_debug.UseVisualStyleBackColor = True
+        Me.GroupBox4.Controls.Add(Me.check_solution)
+        Me.GroupBox4.Controls.Add(Me.button_set_path_color)
+        Me.GroupBox4.Controls.Add(Me.check_debug)
+        Me.GroupBox4.Controls.Add(Me.button_set_wall_color)
+        Me.GroupBox4.Controls.Add(Me.button_redraw)
+        Me.GroupBox4.Location = New System.Drawing.Point(286, 12)
+        Me.GroupBox4.Name = "GroupBox4"
+        Me.GroupBox4.Size = New System.Drawing.Size(109, 209)
+        Me.GroupBox4.TabIndex = 5
+        Me.GroupBox4.TabStop = False
+        Me.GroupBox4.Text = "Appearance"
+        '
+        'button_set_path_color
+        '
+        Me.button_set_path_color.Location = New System.Drawing.Point(6, 94)
+        Me.button_set_path_color.Name = "button_set_path_color"
+        Me.button_set_path_color.Size = New System.Drawing.Size(97, 23)
+        Me.button_set_path_color.TabIndex = 5
+        Me.button_set_path_color.Text = "Set path color"
+        Me.button_set_path_color.UseVisualStyleBackColor = True
+        '
+        'button_set_wall_color
+        '
+        Me.button_set_wall_color.Location = New System.Drawing.Point(6, 65)
+        Me.button_set_wall_color.Name = "button_set_wall_color"
+        Me.button_set_wall_color.Size = New System.Drawing.Size(97, 23)
+        Me.button_set_wall_color.TabIndex = 4
+        Me.button_set_wall_color.Text = "Set wall color"
+        Me.button_set_wall_color.UseVisualStyleBackColor = True
+        '
+        'button_redraw
+        '
+        Me.button_redraw.Location = New System.Drawing.Point(6, 180)
+        Me.button_redraw.Name = "button_redraw"
+        Me.button_redraw.Size = New System.Drawing.Size(75, 23)
+        Me.button_redraw.TabIndex = 3
+        Me.button_redraw.Text = "Re-draw"
+        Me.button_redraw.UseVisualStyleBackColor = True
+        '
+        'button_apply_instantly
+        '
+        Me.button_apply_instantly.Location = New System.Drawing.Point(87, 114)
+        Me.button_apply_instantly.Name = "button_apply_instantly"
+        Me.button_apply_instantly.Size = New System.Drawing.Size(82, 23)
+        Me.button_apply_instantly.TabIndex = 7
+        Me.button_apply_instantly.Text = "Fast Generate"
+        Me.button_apply_instantly.UseVisualStyleBackColor = True
         '
         'FormOptions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(292, 233)
+        Me.ClientSize = New System.Drawing.Size(408, 233)
+        Me.Controls.Add(Me.GroupBox4)
         Me.Controls.Add(Me.GroupBox3)
         Me.Controls.Add(Me.GroupBox2)
         Me.Controls.Add(Me.GroupBox1)
@@ -228,8 +287,9 @@ Partial Class FormOptions
         Me.GroupBox1.PerformLayout()
         CType(Me.numeric_spacing, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
+        Me.GroupBox4.ResumeLayout(False)
+        Me.GroupBox4.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -241,7 +301,6 @@ Partial Class FormOptions
     Friend WithEvents numeric_spacing As System.Windows.Forms.NumericUpDown
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents combo_type As System.Windows.Forms.ComboBox
-    Friend WithEvents button_regenerate As System.Windows.Forms.Button
     Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
     Friend WithEvents button_speed_5 As System.Windows.Forms.Button
     Friend WithEvents button_speed_4 As System.Windows.Forms.Button
@@ -250,4 +309,12 @@ Partial Class FormOptions
     Friend WithEvents button_speed_1 As System.Windows.Forms.Button
     Friend WithEvents button_speed_0 As System.Windows.Forms.Button
     Friend WithEvents check_debug As System.Windows.Forms.CheckBox
+    Friend WithEvents check_solution As System.Windows.Forms.CheckBox
+    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
+    Friend WithEvents button_set_path_color As System.Windows.Forms.Button
+    Friend WithEvents button_set_wall_color As System.Windows.Forms.Button
+    Friend WithEvents button_redraw As System.Windows.Forms.Button
+    Friend WithEvents ColorDialog_wall As System.Windows.Forms.ColorDialog
+    Friend WithEvents ColorDialog_path As System.Windows.Forms.ColorDialog
+    Friend WithEvents button_apply_instantly As System.Windows.Forms.Button
 End Class

@@ -8,3 +8,4 @@ E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Release\VBMaze.vbproj.GenerateResource
 E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Release\VBMaze.exe
 E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Release\VBMaze.xml
 E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Release\VBMaze.pdb
+E:\coding\GitHub\VBMaze\VBMaze\VBMaze\obj\Release\VBMaze.vbprojResolveAssemblyReference.cache

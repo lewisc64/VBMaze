@@ -7,6 +7,7 @@ Public Class Form1
     Public fps As Integer = 60
     Public fast As Boolean = False
     Public debug As Boolean = False
+    Public solution As Boolean = False
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If MsgBox("Fullscreen?", MsgBoxStyle.YesNo) = MsgBoxResult.Yes Then
@@ -25,18 +26,22 @@ Public Class Form1
         Dim options As New FormOptions(grid, generator)
         Me.Invoke(Sub() options.Show())
 
-        display.fill(VBGame.Colors.black)
-        'grid.Draw()
+        grid.DrawBackground()
 
         While True
             If fps <> 0 Then
                 SyncLock grid
                     SyncLock generator
+                        grid.DrawDirty()
+                        If solution Then
+                            grid.DrawSolution(display, generator.start, If(grid.nodes(generator.finish).parent = -1, grid.connected.Last, generator.finish))
+                        End If
+                        If debug Then
+                            generator.Draw(display)
+                        End If
                         If generator.running Then
-                            grid.DrawDirty()
-                            generator.DoStep()
-                            If debug Then
-                                generator.Draw(display)
+                            If generator.DoStep() Then
+                                generator.running = False
                             End If
                         End If
                         display.update()

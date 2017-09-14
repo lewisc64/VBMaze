@@ -2,6 +2,7 @@
 
     Public x As Integer
     Public y As Integer
+    Public parent As Integer = -1
     Public neighbours As New List(Of Integer)
 
     Public Sub New(x As Integer, y As Integer)

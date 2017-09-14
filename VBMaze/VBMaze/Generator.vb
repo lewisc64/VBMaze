@@ -44,6 +44,7 @@
         End If
 
         Dim i As Integer = random.Next(0, backtracks.Count)
+        'i = 0
         current = backtracks(i)
         backtracks.RemoveAt(i)
 
@@ -51,7 +52,7 @@
     End Function
 
     Public Function DoStep() As Boolean
-        Dim neighbours As List(Of Integer) = grid.GetNeighbours(current)
+        Dim neighbours As List(Of Integer) = grid.RetrieveNeighbours(current)
         If neighbours.Count = 0 Then
             Return Backtrack()
         End If
@@ -59,6 +60,7 @@
         Dim nextNode As Integer = neighbours(random.Next(0, neighbours.Count))
 
         grid.connections.Add({current, nextNode})
+        grid.nodes(nextNode).parent = current
 
         If stepThrough Then
             grid.dirtyConnections.Add(grid.connections.Last)
